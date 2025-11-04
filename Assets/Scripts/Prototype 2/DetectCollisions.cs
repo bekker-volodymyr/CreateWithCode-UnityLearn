@@ -4,22 +4,19 @@ namespace Prototype2
 {
     public class DetectCollisions : MonoBehaviour
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        private PoolableObject _poolable;
+
+        private void Start()
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            _poolable = GetComponent<PoolableObject>();
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            Destroy(other.gameObject);
-            Destroy(gameObject);
+            other.gameObject.GetComponent<PoolableObject>().ReturnCallback.Invoke();
+            _poolable.ReturnCallback.Invoke();
+            // Destroy(other.gameObject);
+            // Destroy(gameObject);
         }
     }
 }
