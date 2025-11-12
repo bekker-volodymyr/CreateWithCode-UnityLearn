@@ -4,6 +4,8 @@ namespace Prototype2
 {
     public class PlayerController : MonoBehaviour
     {
+        private Animator _animator;
+
         [SerializeField]
         private PoolableObject _foodPrefab;
 
@@ -20,6 +22,9 @@ namespace Prototype2
         void Start()
         {
             _pool = new ObjectPool<PoolableObject>(_foodPrefab);
+
+            _animator = GetComponent<Animator>();
+            _animator.SetFloat("Speed_f", 0);
         }
 
         void Update()
