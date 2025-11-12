@@ -104,6 +104,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cde504efd4feb8546a40d9a117d9146f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Target
+  _minSpeed: 10
+  _maxSpeed: 14
+  _torqueRange: 7
+  _xRange: 4
+  _yPos: -1
+  _pointValue: 15
+  _explosionEffect: {fileID: 2088871590894813759, guid: 745208c9d6e104225bd99e1ab894e3bb, type: 3}
 --- !u!65 &4231220015091680960
 BoxCollider:
   m_ObjectHideFlags: 0

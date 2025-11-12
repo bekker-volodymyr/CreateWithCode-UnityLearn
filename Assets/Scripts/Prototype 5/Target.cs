@@ -19,8 +19,18 @@ namespace Prototype5
         [SerializeField]
         private float _yPos = -1f;
 
+        [SerializeField]
+        private int _pointValue;
+
+        [SerializeField]
+        private ParticleSystem _explosionEffect;
+
+        private GameManager _gameManager;
+
         void Start()
         {
+            _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
             _rb = GetComponent<Rigidbody>();
 
             transform.position = GetSpawnPosition();
@@ -31,12 +41,20 @@ namespace Prototype5
 
         private void OnMouseDown()
         {
+            if (!_gameManager.IsGameActive) return;
+
+            _gameManager.UpdateScore(_pointValue);
+            Instantiate(_explosionEffect, transform.position, transform.rotation);
             Destroy(gameObject);
         }
 
         private void OnTriggerEnter(Collider other)
         {
             Destroy(gameObject);
+            if (!gameObject.CompareTag("Bad"))
+            {
+                _gameManager.GameOver();
+            }
         }
 
         private Vector3 GetSpawnPosition()
